@@ -63,13 +63,6 @@ public abstract class FigureEditorDialog<T extends Figure> extends JDialog {
         UIUtil.adjustPositionToCenter(this);
     }
 
-    protected FormBuilder getFormBuilder() {
-        nameTextField = new JTextField(oldFigure.getName());
-        xTextField = new JTextField(String.valueOf(oldFigure.getX()), 20);
-        yTextField = new JTextField(String.valueOf(oldFigure.getY()), 20);
-        return FormBuilder.create().add("Name:", nameTextField).add("X:", xTextField).add("Y:", yTextField);
-    }
-
     private void savePerformed() {
         List<String> validationErrors = getValidationErrors();
         if (validationErrors.isEmpty()) {
@@ -85,10 +78,17 @@ public abstract class FigureEditorDialog<T extends Figure> extends JDialog {
         } else {
             StringBuilder message = new StringBuilder();
             for (String validationError : validationErrors) {
-                message.append(validationError + "\n");
+                message.append(validationError).append("\n");
             }
             JOptionPane.showMessageDialog(this, message.toString(), "Validation Problems", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    protected FormBuilder getFormBuilder() {
+        nameTextField = new JTextField(oldFigure.getName());
+        xTextField = new JTextField(String.valueOf(oldFigure.getX()), 20);
+        yTextField = new JTextField(String.valueOf(oldFigure.getY()), 20);
+        return FormBuilder.create().add("Name:", nameTextField).add("X:", xTextField).add("Y:", yTextField);
     }
 
     protected T getFigure() {
