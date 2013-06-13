@@ -71,7 +71,7 @@ public class OvalEditorDialog extends FigureEditorDialog<Oval> {
         } else {
             if (!ValidationHelper.isPositiveInteger(radiusXTextField.getText()))
                 errors.add("RadiusX should be positive integer number");
-            if (!ValidationHelper.isPositiveInteger(radiusXTextField.getText()))
+            if (!ValidationHelper.isPositiveInteger(radiusYTextField.getText()))
                 errors.add("RadiusY should be positive integer number");
         }
         return errors;
@@ -81,9 +81,9 @@ public class OvalEditorDialog extends FigureEditorDialog<Oval> {
     protected Oval getFigure() {
         Oval o = super.getFigure();
         if (isCircleCheckBox.isSelected()) {
-            final Integer radiusX = Integer.valueOf(radiusXTextField.getText());
-            o.setRadiusX(radiusX);
-            o.setRadiusY(radiusX);
+            final Integer radius = Integer.valueOf(radiusXTextField.getText());
+            o.setRadiusX(radius);
+            o.setRadiusY(radius);
         } else {
             o.setRadiusX(Integer.valueOf(radiusXTextField.getText()));
             o.setRadiusY(Integer.valueOf(radiusYTextField.getText()));
